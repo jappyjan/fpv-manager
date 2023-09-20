@@ -1,0 +1,26 @@
+{
+  "cwd": "/Users/jappy/code/FPV Manager",
+  "type": [
+    "pwa",
+    "capacitor"
+  ],
+  "name": "FPV Manager",
+  "framework": "react",
+  "template": "tabs",
+  "bundler": "vite",
+  "cssPreProcessor": false,
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkMode": true,
+    "iconFonts": true
+  },
+  "customBuild": false,
+  "pkg": "de.janjaap.fpv-manager",
+  "capacitor": {
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  }
+}
