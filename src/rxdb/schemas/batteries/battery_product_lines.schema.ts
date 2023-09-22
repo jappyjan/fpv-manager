@@ -1,12 +1,12 @@
 import {RxJsonSchema} from "rxdb";
 import {BatteryManufacturer} from "./battery_manufacturers.schema.ts";
 import ShortUniqueId from "short-unique-id";
+import {ReplicatedDocument} from "./replicated-document.ts";
 
 export interface BatteryProductLine {
     manufacturer_id: BatteryManufacturer['id'];
     id: string;
     name: string;
-    owner_uid: string;
 }
 
 export const batteryProductLineIdGenerator = new ShortUniqueId({
@@ -14,7 +14,7 @@ export const batteryProductLineIdGenerator = new ShortUniqueId({
     dictionary: 'hex'
 });
 
-export const BatteryProductLineSchema: RxJsonSchema<BatteryProductLine> = {
+export const BatteryProductLineSchema: RxJsonSchema<BatteryProductLine & ReplicatedDocument> = {
     version: 1,
     primaryKey: 'id',
     type: 'object',

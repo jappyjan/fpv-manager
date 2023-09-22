@@ -25,7 +25,7 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 
 export function useSetupFirebase(rxDb: RxDatabase | null) {
-    const {updateOwnerUid, user, owner_uid, firebaseAuth} = useAuthStore(rxDb);
+    const {updateOwnerUid, user, owner_uid} = useAuthStore(rxDb);
 
     const firestoreDatabase = useMemo(() => getFirestore(app), []);
     const firestoreCollection = useMemo(() => collection(firestoreDatabase, '_users'), [firestoreDatabase]);

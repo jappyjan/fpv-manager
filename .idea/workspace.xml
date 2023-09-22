@@ -5,26 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bab03d67-89ac-4a59-90f2-fd11477f87da" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/firebase/auth.state.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.firebaserc" beforeDir="false" afterPath="$PROJECT_DIR$/.firebaserc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firebase/firestore.indexes.json" beforeDir="false" afterPath="$PROJECT_DIR$/firebase/firestore.indexes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firebase/firestore.rules" beforeDir="false" afterPath="$PROJECT_DIR$/firebase/firestore.rules" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app-tabs-layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-tabs-layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/login/login.view.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login/login.view.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/login/set-credentials.form.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/login/unlock.form.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/battery-manufacturers/battery-product-lines-list.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/battery-manufacturers/battery-product-lines-list.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/battery-manufacturers/product-lines/batteries-list.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/battery-manufacturers/product-lines/batteries-list.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rxdb/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rxdb/replication/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/replication/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rxdb/schemas/batteries/batteries.migration-strategies.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/batteries.migration-strategies.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/replicated-document.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rxdb/schemas/batteries/batteries.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/batteries.schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_manufacturers.migration-strategies.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_manufacturers.migration-strategies.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_manufacturers.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_manufacturers.schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_product_lines.migration-strategies.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_product_lines.migration-strategies.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_product_lines.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_product_lines.schema.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +95,7 @@
       <workItem from="1695145959506" duration="618000" />
       <workItem from="1695147020342" duration="15472000" />
       <workItem from="1695205568368" duration="30218000" />
-      <workItem from="1695309569445" duration="33203000" />
+      <workItem from="1695309569445" duration="33595000" />
     </task>
     <servers />
   </component>

@@ -1,5 +1,4 @@
 import {create} from 'zustand';
-import ShortUniqueId from "short-unique-id";
 import {useCallback, useEffect, useMemo, useState} from "react";
 import {RxDBCollectionNames} from "../rxdb";
 import {RxDatabase, RxDocument} from "../../../rxdb";
