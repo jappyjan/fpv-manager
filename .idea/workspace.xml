@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bab03d67-89ac-4a59-90f2-fd11477f87da" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/capacitor-app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firestore/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firestore/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rxdb/replication/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/replication/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +76,7 @@
       <workItem from="1695145959506" duration="618000" />
       <workItem from="1695147020342" duration="15472000" />
       <workItem from="1695205568368" duration="30218000" />
-      <workItem from="1695309569445" duration="18379000" />
+      <workItem from="1695309569445" duration="18708000" />
     </task>
     <servers />
   </component>

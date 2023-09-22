@@ -1,6 +1,6 @@
 import {RxDBCollectionNames} from "../index.ts";
 import {replicateFirestore} from "rxdb/plugins/replication-firestore";
-import {FIRESTORE_PROJECT_ID, firestoreCollection, firestoreDatabase} from "../../firestore";
+import {FIRESTORE_PROJECT_ID, firestoreCollection, firestoreDatabase} from "../../firebase";
 import {RxDatabase} from "rxdb";
 
 async function initReplicationOfOneCollection(database: RxDatabase, collectionName: RxDBCollectionNames) {
