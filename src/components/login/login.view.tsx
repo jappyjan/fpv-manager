@@ -1,6 +1,13 @@
 import {
-    Fab, Icon, List, ListButton, ListInput,
-    LoginScreen, LoginScreenTitle, Page
+    f7,
+    Fab,
+    Icon,
+    List,
+    ListButton,
+    ListInput,
+    LoginScreen,
+    LoginScreenTitle,
+    Page
 } from "framework7-react";
 import {useCallback, useEffect, useState} from "react";
 import {useAuthStore} from "../../firebase/auth.state.ts";
@@ -23,10 +30,14 @@ export function LoginView() {
             handleCodeInApp: true,
         };
 
-        await sendSignInLinkToEmail(firebaseAuth, email, actionCodeSettings);
+        try {
+            await sendSignInLinkToEmail(firebaseAuth, email, actionCodeSettings);
+        } catch (e) {
+            f7.dialog.alert(e.message);
+            console.error(e);
+            return;
+        }
         localStorage.setItem('emailForSignIn', email);
-
-        // TODO: error handling
     }, [email, firebaseAuth]);
 
     const finishLogin = useCallback(async () => {
@@ -39,15 +50,31 @@ export function LoginView() {
         if (!email) {
             // User opened the link on a different device. To prevent session fixation
             // attacks, ask the user to provide the associated email again. For example:
-            // TODO: use a modal
-            email = window.prompt('Please provide your email for confirmation');
+            email = await new Promise<string>((resolve) => {
+                f7.dialog.prompt(
+                    'Please provide your email for confirmation',
+                    'Login',
+                    (email) => {
+                        resolve(email);
+                    },
+                    () => {
+                        resolve('');
+                    }
+                );
+            });
         }
 
         if (!email) {
             return;
         }
 
-        await signInWithEmailLink(firebaseAuth, email, location.href)
+        try {
+            await signInWithEmailLink(firebaseAuth, email, location.href)
+        } catch (e) {
+            f7.dialog.alert(e.message);
+            console.error(e);
+            return;
+        }
         window.localStorage.removeItem('emailForSignIn');
     }, [firebaseAuth]);
 
