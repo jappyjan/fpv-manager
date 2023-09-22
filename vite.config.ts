@@ -1,36 +1,28 @@
 import path from 'path';
 import react from '@vitejs/plugin-react';
-
+import {defineConfig} from 'vite';
 
 const SRC_DIR = path.resolve(__dirname, './src');
 const PUBLIC_DIR = path.resolve(__dirname, './public');
 const BUILD_DIR = path.resolve(__dirname, './www',);
-export default async () => {
 
-  return  {
+export default defineConfig({
     plugins: [
-      react(),
-
+        react(),
     ],
     root: SRC_DIR,
-    base: '',
     publicDir: PUBLIC_DIR,
+    base: '',
     build: {
-      outDir: BUILD_DIR,
-      assetsInlineLimit: 0,
-      emptyOutDir: true,
-      rollupOptions: {
-        treeshake: false,
-      },
+        outDir: BUILD_DIR,
+        emptyOutDir: true,
     },
     resolve: {
-      alias: {
-        '@': SRC_DIR,
-      },
+        alias: {
+            '@': SRC_DIR,
+        },
     },
     server: {
-      host: true,
+        host: true,
     },
-
-  };
-}
+});

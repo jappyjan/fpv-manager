@@ -1,4 +1,4 @@
-import {Navbar, Block, Page} from 'framework7-react';
+import {Navbar, Block, Page, Link} from 'framework7-react';
 
 export default function NotFoundPage() {
     return (
@@ -7,6 +7,7 @@ export default function NotFoundPage() {
             <Block strong inset>
                 <p>Sorry</p>
                 <p>Requested content not found.</p>
+                <Link href="/">Go back to home page</Link>
             </Block>
         </Page>
     );

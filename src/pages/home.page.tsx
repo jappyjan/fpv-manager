@@ -1,7 +1,8 @@
 import {
     Navbar,
     NavTitleLarge,
-    Block, Toolbar, Link, PageContent, View, Page,
+    Block,
+    Page,
 } from 'framework7-react';
 
 export default function HomePage() {

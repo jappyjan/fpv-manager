@@ -1,44 +1,71 @@
-import {createRxDatabase} from "rxdb";
-import {getRxStorageDexie} from "rxdb/plugins/storage-dexie";
-import {addRxPlugin} from 'rxdb';
+import {addRxPlugin, createRxDatabase} from 'rxdb';
 import {RxDBDevModePlugin} from 'rxdb/plugins/dev-mode';
 import {BatterySchema} from "./schemas/batteries/batteries.schema.ts";
 import {BatteryProductLineSchema} from "./schemas/batteries/battery_product_lines.schema.ts";
-import {ManufacturerSchema} from "./schemas/manufacturers/manufacturer.schema.ts";
+import {BatteryManufacturersSchema} from "./schemas/batteries/battery_manufacturers.schema.ts";
 import {RxDBQueryBuilderPlugin} from "rxdb/plugins/query-builder";
+import {RxDBCleanupPlugin} from 'rxdb/plugins/cleanup';
+import {RxDBMigrationPlugin} from 'rxdb/plugins/migration';
+import {batteryMigrationStrategies} from "./schemas/batteries/batteries.migration-strategies.ts";
+import {
+    batteryProductLinesMigrationStrategies
+} from "./schemas/batteries/battery_product_lines.migration-strategies.ts";
+import {
+    batteryManufacturersMigrationStrategies
+} from "./schemas/batteries/battery_manufacturers.migration-strategies.ts";
+import {getRxStorageDexie} from "rxdb/plugins/storage-dexie";
+import {RxDBLeaderElectionPlugin} from 'rxdb/plugins/leader-election';
+import {RxDBName} from "./constants.ts";
 
+
+// if in dev mode, enable the dev mode plugin
+if (process.env.NODE_ENV !== 'production') {
+    addRxPlugin(RxDBDevModePlugin);
+}
+
+addRxPlugin(RxDBQueryBuilderPlugin);
+addRxPlugin(RxDBCleanupPlugin);
+addRxPlugin(RxDBMigrationPlugin);
+addRxPlugin(RxDBLeaderElectionPlugin);
 
 export enum RxDBCollectionNames {
     BATTERIES = 'batteries',
     BATTERY_PRODUCT_LINES = 'battery_product_lines',
-    MANUFACTURERS = 'manufacturers',
+    BATTERY_MANUFACTURERS = 'battery_manufacturers',
 }
 
-export async function init() {
+async function initDatabase() {
     const database = await createRxDatabase({
-        name: 'inventory',
+        name: RxDBName,
         storage: getRxStorageDexie(),
         eventReduce: true,
+        cleanupPolicy: {
+            minimumDeletedTime: 1000 * 60 * 60 * 24 * 31, // one month,
+            minimumCollectionAge: 1000 * 60, // 60 seconds
+            runEach: 1000 * 60 * 15, // 15 minutes
+            awaitReplicationsInSync: true,
+            waitForLeadership: true
+        }
     });
-
-// if in dev mode, enable the dev mode plugin
-    if (process.env.NODE_ENV !== 'production') {
-        addRxPlugin(RxDBDevModePlugin);
-    }
-
-    addRxPlugin(RxDBQueryBuilderPlugin);
 
     await database.addCollections({
         [RxDBCollectionNames.BATTERIES]: {
             schema: BatterySchema,
+            migrationStrategies: batteryMigrationStrategies
         },
         [RxDBCollectionNames.BATTERY_PRODUCT_LINES]: {
             schema: BatteryProductLineSchema,
+            migrationStrategies: batteryProductLinesMigrationStrategies
         },
-        [RxDBCollectionNames.MANUFACTURERS]: {
-            schema: ManufacturerSchema,
+        [RxDBCollectionNames.BATTERY_MANUFACTURERS]: {
+            schema: BatteryManufacturersSchema,
+            migrationStrategies: batteryManufacturersMigrationStrategies
         }
     });
 
     return database;
+}
+
+export async function init() {
+    return await initDatabase();
 }

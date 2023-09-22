@@ -5,27 +5,21 @@ import {
     f7,
     f7ready,
     App,
-    View, Link, Toolbar,
+    View,
 } from 'framework7-react';
 
 import capacitorApp from '../capacitor-app';
 import routes from '../pages/routes';
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import {init as initRxDb} from "../rxdb";
 import {Provider as RxDbProvider} from "rxdb-hooks";
 import {RxDatabase} from "rxdb";
+import {LoginView} from "./login/login.view.tsx";
 
-const MyApp = () => {
+export function useF7AppParams() {
     const device = getDevice();
 
-    const [db, setDb] = useState<null | RxDatabase>(null);
-
-    useEffect(() => {
-        initRxDb().then(setDb);
-    }, []);
-
-    // Framework7 Parameters
-    const f7params = {
+    return useMemo(() => ({
         name: 'FPV Manager', // App name
         theme: 'auto', // Automatic theme detection
 
@@ -51,7 +45,22 @@ const MyApp = () => {
 
         browserHistory: true,
         browserHistoryRoot: '/',
-    };
+        swipeout: {
+            removeElements: false,
+            removeElementsWithTimeout: false,
+        }
+    }), [device.capacitor]);
+}
+
+const MyApp = () => {
+    const [db, setDb] = useState<null | RxDatabase>(null);
+
+    useEffect(() => {
+        initRxDb().then(setDb);
+    }, []);
+
+    // Framework7 Parameters
+    const f7params = useF7AppParams();
 
     f7ready(() => {
         if (f7.device.capacitor) {
@@ -62,11 +71,10 @@ const MyApp = () => {
         // Call F7 APIs here
     });
 
-    if (!db) return (<div>Loading...</div>);
-
     return (
         <RxDbProvider db={db ?? undefined}>
             <App {...f7params}>
+                <LoginView/>
                 <View main
                       url="/"
                       className="safe-areas"
@@ -75,8 +83,7 @@ const MyApp = () => {
                       iosAnimateNavbarBackIcon={true}
 
                       browserHistory={true}
-                >
-                </View>
+                />
             </App>
         </RxDbProvider>
     )

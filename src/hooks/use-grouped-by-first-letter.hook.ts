@@ -6,7 +6,7 @@ interface Props<TItem extends object> {
 }
 
 export default function useGroupedByFirstLetter<TItem extends object>(props: Props<TItem>) {
-    return useMemo(() => {
+    const grouped = useMemo(() => {
         if (!props.items) {
             return [];
         }
@@ -25,4 +25,6 @@ export default function useGroupedByFirstLetter<TItem extends object>(props: Pro
             items,
         }));
     }, [props]);
+
+    return grouped.sort((a, b) => a.letter.localeCompare(b.letter));
 }

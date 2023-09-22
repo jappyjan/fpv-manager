@@ -1,0 +1,17 @@
+{
+  "name": "fpv-manager-backend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "FPV Manager Backend",
+  "repository": "",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "bun run index.ts"
+  },
+  "dependencies": {
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.2"
+  }
+}

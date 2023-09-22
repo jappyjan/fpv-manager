@@ -1,7 +1,7 @@
-import {useRxCollection, useRxQuery} from "rxdb-hooks";
-import {Manufacturer} from "../schemas/manufacturers/manufacturer.schema.ts";
+import {AnyRxQuery, useRxCollection, useRxQuery} from "rxdb-hooks";
 import {RxDBCollectionNames} from "../index.ts";
 import {RxDocument} from "rxdb";
+import {useMemo} from "react";
 
 interface ReturnType<T> {
     items: RxDocument<T>[];
@@ -13,7 +13,9 @@ interface ReturnType<T> {
 
 export default function useAllItemsFromCollectionWithInfinitePagination<T>(collectionName: RxDBCollectionNames, pageSize = 25): ReturnType<T> {
     const collection = useRxCollection<T>(collectionName);
-    const allItemsQuery = collection?.find();
+    const allItemsQuery = useMemo(() => {
+        return collection?.find() as AnyRxQuery<T>;
+    }, [collection]);
 
     const {
         result: items,

@@ -1,19 +1,16 @@
-import {RxJsonSchema} from "rxdb";
-
-export interface Manufacturer {
-    id: string;
-    name: string;
-    website: string | undefined;
-}
-
-export const ManufacturerSchema: RxJsonSchema<Manufacturer> = {
+import ShortUniqueId from "short-unique-id";
+export const batteryManufacturerIdGenerator = new ShortUniqueId({
+    length: 5,
+    dictionary: 'hex'
+});
+export const BatteryManufacturersSchema = {
     version: 0,
     primaryKey: 'id',
     type: 'object',
     properties: {
         id: {
             type: 'string',
-            maxLength: 36
+            maxLength: 5
         },
         name: {
             type: 'string',
@@ -23,4 +20,4 @@ export const ManufacturerSchema: RxJsonSchema<Manufacturer> = {
         }
     },
     required: ['id', 'name'],
-}
+};
