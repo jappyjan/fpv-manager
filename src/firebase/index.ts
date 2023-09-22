@@ -4,7 +4,7 @@ import {initializeApp} from "firebase/app";
 import {useAuthStore} from "./auth.state.ts";
 import ShortUniqueId from "short-unique-id";
 import {useCallback, useEffect, useMemo, useState} from "react";
-import {RxDatabase} from "../../../rxdb";
+import {RxDatabase} from "rxdb";
 import {initReplication, stopReplication} from "../rxdb/replication";
 import {RxFirestoreReplicationState} from "rxdb/plugins/replication-firestore";
 import {RxDBCollectionNames} from "../rxdb";
