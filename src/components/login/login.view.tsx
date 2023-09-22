@@ -13,11 +13,12 @@ import {useCallback, useEffect, useState} from "react";
 import {useAuthStore} from "../../firebase/auth.state.ts";
 import {useRxDB} from "rxdb-hooks";
 import {sendSignInLinkToEmail, ActionCodeSettings, isSignInWithEmailLink, signInWithEmailLink} from 'firebase/auth';
+import useSignInWithGithub from "./use-sign-in-with-github.tsx";
 
 
 export function LoginView() {
     const rxdb = useRxDB();
-    const {firebaseAuth} = useAuthStore(rxdb);
+    const {firebaseAuth, isAuthenticated} = useAuthStore(rxdb);
 
     const [email, setEmail] = useState(localStorage.getItem('emailForSignIn') || '');
 
@@ -33,8 +34,9 @@ export function LoginView() {
         try {
             await sendSignInLinkToEmail(firebaseAuth, email, actionCodeSettings);
         } catch (e) {
-            f7.dialog.alert(e.message);
-            console.error(e);
+            const error = e as Error;
+            f7.dialog.alert(error.message);
+            console.error(error);
             return;
         }
         localStorage.setItem('emailForSignIn', email);
@@ -71,8 +73,9 @@ export function LoginView() {
         try {
             await signInWithEmailLink(firebaseAuth, email, location.href)
         } catch (e) {
-            f7.dialog.alert(e.message);
-            console.error(e);
+            const error = e as Error;
+            f7.dialog.alert(error.message);
+            console.error(error);
             return;
         }
         window.localStorage.removeItem('emailForSignIn');
@@ -87,6 +90,16 @@ export function LoginView() {
 
         finishLogin();
     }, [finishLogin]);
+
+    const signInWithGithub = useSignInWithGithub();
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            return;
+        }
+
+        f7.loginScreen.close();
+    }, [isAuthenticated]);
 
     return (
         <LoginScreen id="login-screen">
@@ -120,6 +133,9 @@ export function LoginView() {
                 </List>
                 <List>
                     <ListButton title="Login" onClick={onClickLogin}/>
+                    <ListButton title="Sign in with GitHub"
+                                onClick={signInWithGithub}
+                    />
                 </List>
             </Page>
         </LoginScreen>
