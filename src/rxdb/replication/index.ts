@@ -1,18 +1,26 @@
 import {RxDBCollectionNames} from "../index.ts";
-import {replicateFirestore} from "rxdb/plugins/replication-firestore";
-import {FIRESTORE_PROJECT_ID, firestoreCollection, firestoreDatabase} from "../../firebase";
+import {replicateFirestore, RxFirestoreReplicationState} from "rxdb/plugins/replication-firestore";
+import {app, FIRESTORE_PROJECT_ID} from "../../firebase";
 import {RxDatabase} from "rxdb";
+import {collection, Firestore, getFirestore, DocumentData} from "firebase/firestore";
+import {useAuthState} from "../../firebase/auth.state.ts";
 
-async function initReplicationOfOneCollection(database: RxDatabase, collectionName: RxDBCollectionNames) {
-    const collection = database[collectionName];
-    if (!collection) {
-        console.warn(`Collection ${collectionName} does not exist in database ${database.name}`);
+async function initReplicationOfOneCollection(
+    rxDbDatabase: RxDatabase,
+    rxDbCollectionName: RxDBCollectionNames,
+    firestoreDatabase: Firestore
+) {
+    const rxDbCollection = rxDbDatabase[rxDbCollectionName];
+    if (!rxDbCollection) {
+        console.warn(`Collection ${rxDbCollectionName} does not exist in rxDatabase ${rxDbDatabase.name}`);
         return;
     }
 
+    const firestoreCollection = collection(firestoreDatabase, rxDbCollectionName);
+
     const replicationState = replicateFirestore(
         {
-            collection,
+            collection: rxDbCollection,
             firestore: {
                 projectId: FIRESTORE_PROJECT_ID,
                 database: firestoreDatabase,
@@ -42,14 +50,44 @@ async function initReplicationOfOneCollection(database: RxDatabase, collectionNa
     );
 
     replicationState.error$.subscribe((err) => {
-        console.error(`Replication Error for collection ${collectionName}: ${err}`);
+        console.error(`Replication Error for collection ${rxDbCollectionName}: ${err}`);
     });
 
     await replicationState.awaitInitialReplication();
+
+    return replicationState;
 }
 
-export async function initReplication(database: RxDatabase) {
-    for (const collectionName of Object.values(RxDBCollectionNames)) {
-        await initReplicationOfOneCollection(database, collectionName);
+export async function initReplication(rxDbDatabase: RxDatabase) {
+    console.log("Initializing replication");
+    const firestoreDatabase = getFirestore(app);
+
+    const replicationStates = new Map<RxDBCollectionNames, RxFirestoreReplicationState<DocumentData>>;
+    for (const rxDbCollectionName of Object.values(RxDBCollectionNames)) {
+        rxDbDatabase[rxDbCollectionName].preInsert((originalData) => {
+            originalData.owner_uid = useAuthState.getState().owner_uid;
+        }, false);
+
+        const replicationState = await initReplicationOfOneCollection(
+            rxDbDatabase,
+            rxDbCollectionName,
+            firestoreDatabase,
+        );
+
+        if (!replicationState) {
+            console.warn(`Replication for collection ${rxDbCollectionName} could not be initialized`);
+            continue;
+        }
+
+        replicationStates.set(rxDbCollectionName, replicationState);
+    }
+
+    return replicationStates;
+}
+
+export async function stopReplication(replicationStates: Map<RxDBCollectionNames, RxFirestoreReplicationState<DocumentData>>) {
+    console.log("Stopping replication");
+    for (const replicationState of replicationStates.values()) {
+        await replicationState.cancel();
     }
 }

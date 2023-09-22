@@ -1,6 +1,11 @@
-import {Link, Page, Tab, Tabs, Toolbar} from "framework7-react";
+import {Button, Link, Page, Tab, Tabs, Toolbar} from "framework7-react";
+import {useAuthStore} from "../firebase/auth.state.ts";
+import {useRxDB} from "rxdb-hooks";
 
 export default function AppTabsLayout() {
+    const rxDb = useRxDB();
+    const {isAuthenticated} = useAuthStore(rxDb);
+
     return (
         <Page pageContent={false}>
             <Toolbar bottom tabbar icons>
@@ -28,6 +33,15 @@ export default function AppTabsLayout() {
                 >
                     Drones
                 </Link>
+                {!isAuthenticated && (
+                    <Button iconIos="f7:person"
+                            iconMd="material:person"
+                            loginScreenOpen="#login-screen"
+                            className='tab-link'
+                    >
+                        Login
+                    </Button>
+                )}
             </Toolbar>
             <Tabs routable>
                 <Tab className="page-content" id="home"/>

@@ -51,7 +51,7 @@ async function initDatabase() {
     await database.addCollections({
         [RxDBCollectionNames.BATTERIES]: {
             schema: BatterySchema,
-            migrationStrategies: batteryMigrationStrategies
+            migrationStrategies: batteryMigrationStrategies,
         },
         [RxDBCollectionNames.BATTERY_PRODUCT_LINES]: {
             schema: BatteryProductLineSchema,

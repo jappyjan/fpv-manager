@@ -5,10 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bab03d67-89ac-4a59-90f2-fd11477f87da" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/capacitor-app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firestore/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firestore/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/firebase/auth.state.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.firebaserc" beforeDir="false" afterPath="$PROJECT_DIR$/.firebaserc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebase/firestore.indexes.json" beforeDir="false" afterPath="$PROJECT_DIR$/firebase/firestore.indexes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebase/firestore.rules" beforeDir="false" afterPath="$PROJECT_DIR$/firebase/firestore.rules" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app-tabs-layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-tabs-layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/login/login.view.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login/login.view.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/login/set-credentials.form.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/login/unlock.form.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/battery-manufacturers/battery-product-lines-list.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/battery-manufacturers/battery-product-lines-list.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/battery-manufacturers/product-lines/batteries-list.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/battery-manufacturers/product-lines/batteries-list.page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rxdb/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rxdb/replication/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/replication/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rxdb/schemas/batteries/batteries.migration-strategies.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/batteries.migration-strategies.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rxdb/schemas/batteries/batteries.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/batteries.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_manufacturers.migration-strategies.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_manufacturers.migration-strategies.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_manufacturers.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_manufacturers.schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_product_lines.migration-strategies.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_product_lines.migration-strategies.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_product_lines.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_product_lines.schema.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +34,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "jappyjan"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="baf8e0d0-df81-45db-b8b4-11f7e76ac84c" />
+        <option name="url" value="git@github.com:jappyjan/fpv-manager.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -42,6 +73,11 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "ts.external.directory.path": "/Users/jappy/code/FPV Manager/node_modules/typescript/lib"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "TEXT"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -76,7 +112,7 @@
       <workItem from="1695145959506" duration="618000" />
       <workItem from="1695147020342" duration="15472000" />
       <workItem from="1695205568368" duration="30218000" />
-      <workItem from="1695309569445" duration="18708000" />
+      <workItem from="1695309569445" duration="33203000" />
     </task>
     <servers />
   </component>
@@ -91,8 +127,6 @@
         <option value="$PROJECT_DIR$/src/components/app-tabs-layout.js" />
         <option value="$PROJECT_DIR$/src/components/app.js" />
         <option value="$PROJECT_DIR$/src/rxdb/custom-hooks/use-all-items-froms-collection-with-infinite-pagination.hook.js" />
-        <option value="$PROJECT_DIR$/src/components/login/unlock.form.js" />
-        <option value="$PROJECT_DIR$/src/components/login/set-credentials.form.js" />
         <option value="$PROJECT_DIR$/src/components/login/login.view.js" />
         <option value="$PROJECT_DIR$/src/pages/battery-manufacturers/product-lines/batteries-list.page.js" />
         <option value="$PROJECT_DIR$/src/pages/battery-manufacturers/product-lines/product-line-edit.page.js" />

@@ -1,9 +1,33 @@
 rules_version = '2';
 
 service cloud.firestore {
+  function isAuthenticated(request) {
+    return request.auth != null;
+  }
+
+  function canRead(request, resource) {
+    let usersOwnerUid = get(/databases/$(database)/documents/_users/$(request.auth.uid)).data.owner_uid;
+    return usersOwnerUid == resource.data.owner_uid;
+  }
+
+  function canCreate(request) {
+    let usersOwnerUid = get(/databases/$(database)/documents/_users/$(request.auth.uid)).data.owner_uid;
+    return request.resource.data.owner_uid == usersOwnerId;
+  }
+
+  function canUpdate(request, resource) {
+    return canRead(request, resource);
+  }
+
   match /databases/{database}/documents {
+    match /_users/{userId} {
+      allow read: if isAuthenticated(request) && request.auth.uid == userId;
+      allow write: if isAuthenticated(request) && request.auth.uid == userId;
+    }
     match /{document=**} {
-      allow read, write: if false;
+      allow read: if isAuthenticated(request) && canRead(request, resource);
+      allow create: if isAuthenticated(request) && canCreate(request, resource);
+      allow update: if isAuthenticated(request) && canUpdate(request, resource);
     }
   }
 }

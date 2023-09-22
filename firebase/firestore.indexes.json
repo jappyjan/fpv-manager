@@ -1,4 +1,29 @@
 {
-  "indexes": [],
-  "fieldOverrides": []
+    "indexes": [
+    {
+        "collectionGroup": "battery_product_lines",
+        "queryScope": "COLLECTION",
+        "fields": [
+            { "fieldPath": "serverTimestamp", "order": "ASCENDING" },
+            { "fieldPath": "id", "order": "ASCENDING" }
+            ]
+    },
+    {
+        "collectionGroup": "battery_manufacturers",
+        "queryScope": "COLLECTION",
+        "fields": [
+            { "fieldPath": "serverTimestamp", "order": "ASCENDING" },
+            { "fieldPath": "id", "order": "ASCENDING" }
+            ]
+    },
+    {
+        "collectionGroup": "batteries",
+        "queryScope": "COLLECTION",
+        "fields": [
+            { "fieldPath": "serverTimestamp", "order": "ASCENDING" },
+            { "fieldPath": "id", "order": "ASCENDING" }
+            ]
+    }
+    ],
+    "fieldOverrides": []
 }

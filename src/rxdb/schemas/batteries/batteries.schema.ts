@@ -6,6 +6,7 @@ export interface Battery {
     product_line_id: BatteryProductLine['id'];
     id: string;
     bought_at: string;
+    owner_uid: string;
 }
 
 export const batteryIdGenerator = new ShortUniqueId({
@@ -14,7 +15,7 @@ export const batteryIdGenerator = new ShortUniqueId({
 });
 
 export const BatterySchema: RxJsonSchema<Battery> = {
-    version: 1,
+    version: 2,
     primaryKey: 'id',
     type: 'object',
     properties: {
@@ -27,7 +28,12 @@ export const BatterySchema: RxJsonSchema<Battery> = {
         },
         bought_at: {
             type: 'string',
+            final: true,
         },
+        owner_uid: {
+            type: 'string',
+            final: true,
+        }
     },
-    required: ['id', 'product_line_id'],
+    required: ['id', 'product_line_id', 'owner_uid'],
 }

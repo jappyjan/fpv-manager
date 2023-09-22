@@ -15,6 +15,7 @@ import {init as initRxDb} from "../rxdb";
 import {Provider as RxDbProvider} from "rxdb-hooks";
 import {RxDatabase} from "rxdb";
 import {LoginView} from "./login/login.view.tsx";
+import {useSetupFirebase} from "../firebase";
 
 export function useF7AppParams() {
     const device = getDevice();
@@ -70,6 +71,8 @@ const MyApp = () => {
 
         // Call F7 APIs here
     });
+
+    useSetupFirebase(db);
 
     return (
         <RxDbProvider db={db ?? undefined}>

@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "fvp-manager"
-  }
+  },
+  "targets": {
+    "fvp-manager": {
+      "hosting": {
+        "FPV-Manager": [
+          "fpv"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

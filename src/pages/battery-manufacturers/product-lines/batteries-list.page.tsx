@@ -88,7 +88,9 @@ export default function BatteriesListPage(props: Props) {
                     <Link popoverOpen=".title-click-popover-menu"
                           style={{display: 'inline'}}
                     >
-                        <Icon style={{marginLeft: '.25rem'}} ios="f7:chevron_down" md="material:chevron_down"
+                        <Icon style={{marginLeft: '.25rem'}}
+                              ios="f7:chevron_down"
+                              material="md:home"
                               size="small"/>
                     </Link>
                 </NavTitle>
