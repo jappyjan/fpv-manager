@@ -5,45 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bab03d67-89ac-4a59-90f2-fd11477f87da" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/login/set-credentials.form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/login/unlock.form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/firestore/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/use-delete-battery-manufacturer.hook.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/use-download-canvas-as-image.hook.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/use-print-element.hook.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/battery-manufacturers/battery-product-lines-list.page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/battery-manufacturers/product-lines/batteries-list.page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/battery-manufacturers/product-lines/batteries/battery-detail.page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/battery-manufacturers/product-lines/batteries/battery-edit.page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/battery-manufacturers/product-lines/product-line-edit.page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/rxdb/constants.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/rxdb/replication/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/batteries.migration-strategies.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_manufacturers.migration-strategies.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_product_lines.migration-strategies.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lockb" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lockb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app-tabs-layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app-tabs-layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/login/login.view.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/use-grouped-by-first-letter.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/use-grouped-by-first-letter.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/404.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/404.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/battery-manufacturers-list.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/battery-manufacturers-list.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/battery-manufacturers/batteries-list.page.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/battery-manufacturers/manufacturer-edit.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/battery-manufacturers/manufacturer-edit.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/home.page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/home.page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rxdb/custom-hooks/use-all-items-froms-collection-with-infinite-pagination.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/custom-hooks/use-all-items-froms-collection-with-infinite-pagination.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rxdb/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rxdb/schemas/batteries/batteries.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/batteries.schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_product_lines.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_product_lines.schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rxdb/schemas/manufacturers/manufacturer.schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/schemas/batteries/battery_manufacturers.schema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/firebase-hosting-merge.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/firebase-hosting-merge.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/firebase-hosting-pull-request.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/firebase-hosting-pull-request.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +74,7 @@
       <workItem from="1695145959506" duration="618000" />
       <workItem from="1695147020342" duration="15472000" />
       <workItem from="1695205568368" duration="30218000" />
-      <workItem from="1695309569445" duration="18163000" />
+      <workItem from="1695309569445" duration="18248000" />
     </task>
     <servers />
   </component>
