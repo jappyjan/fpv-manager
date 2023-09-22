@@ -8,5 +8,6 @@ export const batteryManufacturersMigrationStrategies: MigrationStrategies = {
             ...oldDoc,
             owner_uid: useAuthState.getState().owner_uid,
         }
-    }
+    },
+    2: (oldDoc: unknown) => oldDoc,
 };

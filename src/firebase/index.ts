@@ -63,8 +63,11 @@ export function useSetupFirebase(rxDb: RxDatabase | null) {
             throw new Error(`User document ${userDoc.id} does not have a uid field`);
         }
 
-        console.log("user document exists, updating owner uid");
-        await updateOwnerUid(userDocData.owner_uid);
+        console.log("user document exists");
+        if (owner_uid !== userDocData.owner_uid) {
+            console.log("updating owner uid");
+            await updateOwnerUid(userDocData.owner_uid);
+        }
     }, [createUserDocument, firestoreCollection, updateOwnerUid]);
 
     useEffect(() => {

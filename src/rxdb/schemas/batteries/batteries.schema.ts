@@ -15,7 +15,7 @@ export const batteryIdGenerator = new ShortUniqueId({
 });
 
 export const BatterySchema: RxJsonSchema<Battery & ReplicatedDocument> = {
-    version: 2,
+    version: 3,
     primaryKey: 'id',
     type: 'object',
     properties: {
@@ -32,7 +32,6 @@ export const BatterySchema: RxJsonSchema<Battery & ReplicatedDocument> = {
         },
         owner_uid: {
             type: 'string',
-            final: true,
         }
     },
     required: ['id', 'product_line_id', 'owner_uid'],

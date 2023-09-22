@@ -38,8 +38,10 @@ export function useAuthStore(rxDb: RxDatabase | null) {
             // @ts-ignore
             const allDocuments: RxDocument<{owner_uid: string}>[] = await rxDb[collectionName].find().exec();
             for (const document of allDocuments) {
-                document.owner_uid = owner_uid;
-                await document.save();
+                await rxDb[collectionName].upsert({
+                    ...document._data,
+                    owner_uid,
+                });
             }
         }
 
