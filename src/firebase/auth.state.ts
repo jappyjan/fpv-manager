@@ -1,7 +1,7 @@
 import {create} from 'zustand';
 import {useCallback, useEffect, useMemo, useState} from "react";
 import {RxDBCollectionNames} from "../rxdb";
-import {RxDatabase, RxDocument} from "../../../rxdb";
+import {RxDatabase, RxDocument} from "rxdb";
 import {getAuth, User} from "firebase/auth";
 import {app} from "./index.ts";
 
