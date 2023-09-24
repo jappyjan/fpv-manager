@@ -21,8 +21,7 @@ jobs:
           repository: 'pubkey/rxdb'
           ref: 'master'
           path: 'rxdb'
-      - run: (cd rxdb && npm install && npm run build)
-      - run: bun link
+      - run: (cd rxdb && npm install && npm run build && bun link)
       - run: bun install
       - run: bun run build
       - uses: FirebaseExtended/action-hosting-deploy@v0

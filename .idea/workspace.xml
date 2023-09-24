@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bab03d67-89ac-4a59-90f2-fd11477f87da" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/firebase-hosting-merge.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/firebase-hosting-merge.yml" afterDir="false" />
-    </list>
+    <list default="true" id="bab03d67-89ac-4a59-90f2-fd11477f87da" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,7 +90,7 @@
       <workItem from="1695145959506" duration="618000" />
       <workItem from="1695147020342" duration="15472000" />
       <workItem from="1695205568368" duration="30218000" />
-      <workItem from="1695309569445" duration="44260000" />
+      <workItem from="1695309569445" duration="44540000" />
     </task>
     <servers />
   </component>
