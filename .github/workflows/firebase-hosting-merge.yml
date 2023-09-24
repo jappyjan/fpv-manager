@@ -20,6 +20,7 @@ jobs:
         with:
           repository: 'pubkey/rxdb'
           ref: 'master'
+          path: 'rxdb'
       - run: (cd rxdb && npm install && npm run build)
       - run: bun link
       - run: bun install

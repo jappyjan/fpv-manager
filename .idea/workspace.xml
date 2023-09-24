@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bab03d67-89ac-4a59-90f2-fd11477f87da" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.firebase/hosting.d3d3.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.d3d3.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/workflows/firebase-hosting-merge.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/firebase-hosting-merge.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bun.lockb" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lockb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/firebase/firestore.rules" beforeDir="false" afterPath="$PROJECT_DIR$/firebase/firestore.rules" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rxdb/custom-hooks/use-all-items-froms-collection-with-infinite-pagination.hook.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/custom-hooks/use-all-items-froms-collection-with-infinite-pagination.hook.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rxdb/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rxdb/replication/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/rxdb/replication/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +92,7 @@
       <workItem from="1695145959506" duration="618000" />
       <workItem from="1695147020342" duration="15472000" />
       <workItem from="1695205568368" duration="30218000" />
-      <workItem from="1695309569445" duration="44135000" />
+      <workItem from="1695309569445" duration="44260000" />
     </task>
     <servers />
   </component>
