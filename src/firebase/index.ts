@@ -68,7 +68,7 @@ export function useSetupFirebase(rxDb: RxDatabase | null) {
             console.log("updating owner uid");
             await updateOwnerUid(userDocData.owner_uid);
         }
-    }, [createUserDocument, firestoreCollection, updateOwnerUid]);
+    }, [createUserDocument, firestoreCollection, owner_uid, updateOwnerUid]);
 
     useEffect(() => {
         onAuthUserChanged(user);

@@ -16,17 +16,35 @@ import {
 import {getRxStorageDexie} from "rxdb/plugins/storage-dexie";
 import {RxDBLeaderElectionPlugin} from 'rxdb/plugins/leader-election';
 import {RxDBName} from "./constants.ts";
+import { RxDBJsonDumpPlugin } from 'rxdb/plugins/json-dump';
 
 
 // if in dev mode, enable the dev mode plugin
 if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     addRxPlugin(RxDBDevModePlugin);
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 addRxPlugin(RxDBQueryBuilderPlugin);
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 addRxPlugin(RxDBCleanupPlugin);
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 addRxPlugin(RxDBMigrationPlugin);
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 addRxPlugin(RxDBLeaderElectionPlugin);
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+addRxPlugin(RxDBJsonDumpPlugin);
 
 export enum RxDBCollectionNames {
     BATTERIES = 'batteries',
@@ -37,6 +55,8 @@ export enum RxDBCollectionNames {
 async function initDatabase() {
     const database = await createRxDatabase({
         name: RxDBName,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         storage: getRxStorageDexie(),
         eventReduce: true,
         cleanupPolicy: {

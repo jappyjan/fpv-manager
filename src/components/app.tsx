@@ -13,7 +13,7 @@ import routes from '../pages/routes';
 import {useEffect, useMemo, useState} from "react";
 import {init as initRxDb} from "../rxdb";
 import {Provider as RxDbProvider} from "rxdb-hooks";
-import {RxDatabase} from "rxdb";
+import {CollectionsOfDatabase, RxDatabase} from "rxdb";
 import {LoginView} from "./login/login.view.tsx";
 import {useSetupFirebase} from "../firebase";
 
@@ -54,7 +54,7 @@ export function useF7AppParams() {
 }
 
 const MyApp = () => {
-    const [db, setDb] = useState<null | RxDatabase>(null);
+    const [db, setDb] = useState<null | RxDatabase<CollectionsOfDatabase>>(null);
 
     useEffect(() => {
         initRxDb().then(setDb);
@@ -75,7 +75,7 @@ const MyApp = () => {
     useSetupFirebase(db);
 
     return (
-        <RxDbProvider db={db ?? undefined}>
+        <RxDbProvider db={(db as any) ?? undefined}>
             <App {...f7params}>
                 <LoginView/>
                 <View main

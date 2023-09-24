@@ -18,6 +18,11 @@ async function initReplicationOfOneCollection(
 
     const firestoreCollection = collection(firestoreDatabase, rxDbCollectionName);
 
+    console.log('starting replication for ', rxDbCollectionName);
+    console.log('documents to sync', {
+        documents: rxDbCollection.exportJSON(),
+    });
+
     const replicationState = replicateFirestore(
         {
             collection: rxDbCollection,
@@ -53,7 +58,9 @@ async function initReplicationOfOneCollection(
         console.error(`Replication Error for collection ${rxDbCollectionName}: ${err}`);
     });
 
+    console.log('awaiting initial replication...', rxDbCollectionName);
     await replicationState.awaitInitialReplication();
+    console.log('replication successfully setup!', rxDbCollectionName);
 
     return replicationState;
 }
@@ -80,6 +87,7 @@ export async function initReplication(rxDbDatabase: RxDatabase) {
         }
 
         replicationStates.set(rxDbCollectionName, replicationState);
+        console.log(`Replication for collection ${rxDbCollectionName} initialized`);
     }
 
     return replicationStates;

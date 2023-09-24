@@ -14,7 +14,7 @@ interface ReturnType<T> {
 export default function useAllItemsFromCollectionWithInfinitePagination<T>(collectionName: RxDBCollectionNames, pageSize = 25): ReturnType<T> {
     const collection = useRxCollection<T>(collectionName);
     const allItemsQuery = useMemo(() => {
-        return collection?.find() as AnyRxQuery<T>;
+        return collection?.find() as AnyRxQuery<RxDocument<T>>;
     }, [collection]);
 
     const {
@@ -23,13 +23,13 @@ export default function useAllItemsFromCollectionWithInfinitePagination<T>(colle
         fetchMore,
         isExhausted,
         resetList,
-    } = useRxQuery(allItemsQuery, {
+    } = useRxQuery<RxDocument<T>>(allItemsQuery, {
         pageSize,
         pagination: 'Infinite',
     });
 
     return {
-        items,
+        items: items,
         isFetching,
         isExhausted,
         resetList,

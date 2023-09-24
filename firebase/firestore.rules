@@ -12,7 +12,7 @@ service cloud.firestore {
 
   function canCreate(request) {
     let usersOwnerUid = get(/databases/$(database)/documents/_users/$(request.auth.uid)).data.owner_uid;
-    return request.resource.data.owner_uid == usersOwnerId;
+    return request.resource.data.owner_uid == usersOwnerUid;
   }
 
   function canUpdate(request, resource) {
