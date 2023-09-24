@@ -5,29 +5,25 @@ service cloud.firestore {
     return request.auth != null;
   }
 
-  function canRead(request, resource) {
-    let usersOwnerUid = get(/databases/$(database)/documents/_users/$(request.auth.uid)).data.owner_uid;
-    return usersOwnerUid == resource.data.owner_uid;
+  function canRead(database, request, resource) {
+    let usersOwnerUid = request.auth.uid;
+    return debug(debug(usersOwnerUid) == debug(resource.data.owner_uid));
   }
 
-  function canCreate(request) {
-    let usersOwnerUid = get(/databases/$(database)/documents/_users/$(request.auth.uid)).data.owner_uid;
+  function canCreate(database, request) {
+    let usersOwnerUid = request.auth.uid;
     return request.resource.data.owner_uid == usersOwnerUid;
   }
 
-  function canUpdate(request, resource) {
-    return canRead(request, resource);
+  function canUpdate(database, request, resource) {
+    return canRead(database, request, resource);
   }
 
   match /databases/{database}/documents {
-    match /_users/{userId} {
-      allow read: if isAuthenticated(request) && request.auth.uid == userId;
-      allow write: if isAuthenticated(request) && request.auth.uid == userId;
-    }
     match /{document=**} {
-      allow read: if isAuthenticated(request) && canRead(request, resource);
-      allow create: if isAuthenticated(request) && canCreate(request, resource);
-      allow update: if isAuthenticated(request) && canUpdate(request, resource);
+      allow read: if isAuthenticated(request) && canRead(database, request, resource);
+      allow create: if isAuthenticated(request) && canCreate(database, request);
+      allow update: if isAuthenticated(request) && canUpdate(database, request, resource);
     }
   }
 }

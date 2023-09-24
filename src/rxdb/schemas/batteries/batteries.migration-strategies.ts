@@ -1,5 +1,4 @@
 import {MigrationStrategies} from "rxdb";
-import {useAuthState} from "../../../firebase/auth.state.ts";
 
 export const batteryMigrationStrategies: MigrationStrategies = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -14,7 +13,7 @@ export const batteryMigrationStrategies: MigrationStrategies = {
     2: (oldDoc: any) => {
         return {
             ...oldDoc,
-            owner_uid: useAuthState.getState().owner_uid,
+            owner_uid: '__not_set__',
         }
     },
     3: (oldDoc: unknown) => oldDoc,

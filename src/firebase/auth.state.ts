@@ -1,4 +1,3 @@
-import {create} from 'zustand';
 import {useCallback, useEffect, useMemo, useState} from "react";
 import {RxDBCollectionNames} from "../rxdb";
 import {RxDatabase, RxDocument} from "rxdb";
@@ -17,18 +16,11 @@ if (!cachedOwnerUid) {
     localStorage.setItem('owner_uid', cachedOwnerUid);
 }
 
-export const useAuthState = create<AuthStore>((set) => ({
-    owner_uid: cachedOwnerUid,
-    updateOwnerUid: (owner_uid: string) => {
-        set({owner_uid});
-    }
-}));
-
 export function useAuthStore(rxDb: RxDatabase | null) {
-    const authState = useAuthState();
     const firebaseAuth = useMemo(() => getAuth(app), []);
 
-    const updateOwnerUid = useCallback(async (owner_uid: string) => {
+    const updateOwnerUidInDocuments = useCallback(async (owner_uid: string) => {
+        console.log("updating owner_uid", owner_uid);
         if (!rxDb) {
             throw new Error("rxDb is not initialized");
         }
@@ -44,11 +36,17 @@ export function useAuthStore(rxDb: RxDatabase | null) {
                 });
             }
         }
-
-        authState.updateOwnerUid(owner_uid);
-    }, [authState, rxDb]);
+    }, [rxDb]);
 
     const [user, setUser] = useState<User | null>(null);
+
+    const ownerUid = useMemo(() => {
+        return user?.uid || cachedOwnerUid;
+    }, [user]);
+
+    useEffect(() => {
+        updateOwnerUidInDocuments(ownerUid);
+    }, [ownerUid, updateOwnerUidInDocuments]);
 
     const isAuthenticated = useMemo(() => !!user, [user]);
 
@@ -62,10 +60,10 @@ export function useAuthStore(rxDb: RxDatabase | null) {
     }, [onAuthStateChanged, firebaseAuth]);
 
     return {
-        ...authState,
-        updateOwnerUid,
+        updateOwnerUid: updateOwnerUidInDocuments,
         firebaseAuth,
         isAuthenticated,
         user,
+        ownerUid,
     };
 }

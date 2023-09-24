@@ -1,14 +1,16 @@
 import {RxDBCollectionNames} from "../index.ts";
 import {replicateFirestore, RxFirestoreReplicationState} from "rxdb/plugins/replication-firestore";
-import {app, FIRESTORE_PROJECT_ID} from "../../firebase";
-import {RxDatabase} from "rxdb";
-import {collection, Firestore, getFirestore, DocumentData} from "firebase/firestore";
-import {useAuthState} from "../../firebase/auth.state.ts";
+import {app, FIREBASE_PROJECT_ID} from "../../firebase";
+import {MaybePromise, RxDatabase, WithDeleted} from "rxdb";
+import {collection, Firestore, getFirestore, DocumentData, where} from "firebase/firestore";
+import {getAuth} from "firebase/auth";
+import {ReplicatedDocument} from "../schemas/batteries/replicated-document.ts";
 
 async function initReplicationOfOneCollection(
     rxDbDatabase: RxDatabase,
     rxDbCollectionName: RxDBCollectionNames,
-    firestoreDatabase: Firestore
+    firestoreDatabase: Firestore,
+    ownerId: string,
 ) {
     const rxDbCollection = rxDbDatabase[rxDbCollectionName];
     if (!rxDbCollection) {
@@ -18,21 +20,29 @@ async function initReplicationOfOneCollection(
 
     const firestoreCollection = collection(firestoreDatabase, rxDbCollectionName);
 
-    console.log('starting replication for ', rxDbCollectionName);
+    console.log('starting replication for ', rxDbCollectionName, ' with ownerId ', ownerId);
     console.log('documents to sync', {
-        documents: rxDbCollection.exportJSON(),
+        documents: await rxDbCollection.exportJSON(),
     });
 
     const replicationState = replicateFirestore(
         {
             collection: rxDbCollection,
             firestore: {
-                projectId: FIRESTORE_PROJECT_ID,
+                projectId: FIREBASE_PROJECT_ID,
                 database: firestoreDatabase,
                 collection: firestoreCollection,
             },
-            pull: {},
-            push: {},
+            pull: {
+                filter: [
+                    where('owner_uid', '==', ownerId)
+                ]
+            },
+            push: {
+                filter(item: WithDeleted<ReplicatedDocument>): MaybePromise<boolean> {
+                    return item.owner_uid === ownerId;
+                }
+            },
             /**
              * Either do a live or a one-time replication
              * [default=true]
@@ -50,12 +60,12 @@ async function initReplicationOfOneCollection(
              * IMPORTANT: The serverTimestampField MUST NOT be part of the collections RxJsonSchema!
              * [default='serverTimestamp']
              */
-            serverTimestampField: 'serverTimestamp'
+            serverTimestampField: 'serverTimestamp',
         }
     );
 
     replicationState.error$.subscribe((err) => {
-        console.error(`Replication Error for collection ${rxDbCollectionName}: ${err}`);
+        console.error(`Replication Error for collection ${rxDbCollectionName}`, err);
     });
 
     console.log('awaiting initial replication...', rxDbCollectionName);
@@ -65,20 +75,23 @@ async function initReplicationOfOneCollection(
     return replicationState;
 }
 
-export async function initReplication(rxDbDatabase: RxDatabase) {
+export async function initReplication(ownerId: string, rxDbDatabase: RxDatabase) {
     console.log("Initializing replication");
     const firestoreDatabase = getFirestore(app);
+    const firebaseAuth = getAuth(app);
 
     const replicationStates = new Map<RxDBCollectionNames, RxFirestoreReplicationState<DocumentData>>;
     for (const rxDbCollectionName of Object.values(RxDBCollectionNames)) {
         rxDbDatabase[rxDbCollectionName].preInsert((originalData) => {
-            originalData.owner_uid = useAuthState.getState().owner_uid;
+            originalData.owner_uid = firebaseAuth.currentUser?.uid || '__not_set__';
         }, false);
+
 
         const replicationState = await initReplicationOfOneCollection(
             rxDbDatabase,
             rxDbCollectionName,
             firestoreDatabase,
+            ownerId,
         );
 
         if (!replicationState) {

@@ -15,13 +15,6 @@ jobs:
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
-      - uses: actions/checkout@v4
-        name: Checkout RXDB
-        with:
-          repository: 'pubkey/rxdb'
-          ref: 'master'
-          path: 'rxdb'
-      - run: (cd rxdb && npm install && npm run build && bun link)
       - run: bun install
       - run: bun run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
